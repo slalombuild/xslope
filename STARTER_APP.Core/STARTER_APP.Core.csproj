@@ -1,0 +1,64 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>resgen LocalizedStrings.txt LocalizedStrings.resx</command>
+          <workingdir>/${ProjectDir}/Resources/</workingdir>
+        </Command>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>/bin/sh /${ProjectDir}/../XSlope.Core/Scripts/GenerateColors.sh STARTER_APP.Droid STARTER_APP.iOS</command>
+          <workingdir>/${ProjectDir}/Resources/</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CustomCommands>
+      <CustomCommands>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>resgen LocalizedStrings.txt LocalizedStrings.resx</command>
+          <workingdir>/${ProjectDir}/Resources/</workingdir>
+        </Command>
+        <Command>
+          <type>BeforeBuild</type>
+          <command>/bin/sh /${ProjectDir}/../XSlope.Core/Scripts/GenerateColors.sh STARTER_APP.Droid STARTER_APP.iOS</command>
+          <workingdir>/${ProjectDir}/Resources/</workingdir>
+        </Command>
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Portable.Ninject" Version="3.3.1" />
+    <PackageReference Include="akavache" Version="5.0.0" />
+    <PackageReference Include="reactiveui" Version="7.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XSlope.Core\XSlope.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Container\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\LocalizedStrings.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LocalizedStrings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\LocalizedStrings.Designer.cs">
+      <DependentUpon>LocalizedStrings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>

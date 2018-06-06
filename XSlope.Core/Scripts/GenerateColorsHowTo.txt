@@ -1,0 +1,13 @@
+﻿Note: [App] == the name of your app
+
+1) add Colors.txt to [App].Core/Resources (ensure Colors.txt has UTF-8 encoding, not UTF-8 with BOM)
+    - Add colors in the format [name]=[hex] (ie: red:#FF0000)
+
+2) create [App].Droid/Resources/values/Colors.xml if it does not exist
+
+3) create [App].iOS/Helpers/Colors.cs if it does not exist
+
+4) add build step to App.Core 
+    - Add a Before Build step [App].Core
+        -- Command = /bin/sh /${ProjectDir}/../XSlope.Core/Scripts/GenerateColors.sh [App].Droid [App].iOS
+        -- Working Directory = /${ProjectDir}/Resources

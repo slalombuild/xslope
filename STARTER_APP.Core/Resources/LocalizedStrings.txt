@@ -1,0 +1,6 @@
+﻿; -- Generic -- 
+AppName=STARTER_APP
+
+;-- Hello World --
+HelloWorld_Title=Hello World
+HelloWorld_GettingStarted=To get started, use the rename script to change the solution and project names.

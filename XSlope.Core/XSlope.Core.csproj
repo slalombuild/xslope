@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Clients\" />
+    <Folder Include="Container\" />
+    <Folder Include="Converters\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Handlers\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Managers\" />
+    <Folder Include="Providers\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Providers\Interfaces\" />
+    <Folder Include="Handlers\Interfaces\" />
+    <Folder Include="Managers\Interfaces\" />
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="modernhttpclient" Version="2.4.2" />
+    <PackageReference Include="reactiveui" Version="7.4.0" />
+    <PackageReference Include="akavache.sqlite3" Version="5.0.0" />
+    <PackageReference Include="Portable.Ninject" Version="3.3.1" />
+  </ItemGroup>
+</Project>

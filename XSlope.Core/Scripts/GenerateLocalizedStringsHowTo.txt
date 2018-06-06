@@ -1,0 +1,44 @@
+﻿******
+String Localization HowTo
+******
+
+: Usage :
+    LocalizedStrings.LocalizedKey
+
+: Add build step to [App].Core project
+1)Add a Before Build step with:
+    Command = resgen LocalizedStrings.txt LocalizedStrings.resx
+    Working Directory = /${ProjectDir}/Resources/
+
+: Add a LocalizedStrings.txt file to [App].Core/Resources
+
+: Add New String :
+1) In the LocalizedStrings.txt file, add one of the following lines:
+    Add key/value pairs in the format: [KEY]=[LOCALIZED STRING] (ie: HelloWorld_Title=Hello World)
+
+: Import resx file
+The first time resgen runs, it will create a resx file. 
+Import this into the project in the Resources directory.
+Set the Build Action to Embedded Resource 
+Set the Properties/Custom Tool = PublicResXFileCodeGenerator
+Build the [App].Core project again to generate the resx.Designer file.
+
+: To Add new Locale :
+Requirements: 
+Resource File Generator(Resgen) part of .NET Framework Tools to update the resx file.
+Check by running the command 'resgen' in your terminal.
+
+1) Create new text file with same name prefix (ie: LocalizedStrings.de.txt)
+2) Copy contents from LocalizedStrings.txt to new text file and update localizations
+3) Add Custom Command
+    a) Navigate to Project Options > Custom Commands
+    b) Add a new Before Build Command
+        Command: resgen [NEW FILE NAME].txt [NEW FILE NAME].resx
+        Working Directory: /${ProjectDir}/Resources/
+    c) Repeat steps b for all Configurations 
+    d) Press OK to save changes
+4) Build Project
+5) Import New Localization resx file
+    a) Import the new resx file into the project from the same working directory as 3b
+    b) Right click on the new resx file and change Build Action > EmbeddedResource
+    c) Set Properties/Custom Tool = PublicResXFileCodeGenerator
